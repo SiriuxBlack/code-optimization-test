@@ -1,58 +1,139 @@
-
 # Refactorization Quiz: Applying the SDLC Process
 
-## Overview
+AgeVallidation
 
-This quiz is designed to test your ability to refactor code using **professional best practices**. Working in **pairs**, you will refactor provided code by improving its readability, efficiency, and scalability. You will also apply the **Software Development Life Cycle (SDLC)**, using structured phases to enhance the code. Each group will fork the repository, refactor the code, and submit a pull request with their improvements.
-
----
-
-## Objectives
-
-- Apply concepts from **Unit 1: Data Storage and Control Flow**:
-  - Writing variables and constants
-  - Arithmetic operators
-  - Input/output system
-  - Conditional operators
-  - Control structures
-  - Avoiding magic numbers
-  - Lists of data with arrays
-  - Basic SDLC principles
+Aquí tienes una versión reducida y concisa de la documentación para el código Java AgeValidation:
 
 ---
 
-## SDLC Approach
+## *Documentación del Código: AgeValidation*
 
-You must follow the **SDLC process** to refactor the code:
+### *Descripción General*
 
-1. **Phase 1: Requirements Analysis** – Understand the original code, identify its weaknesses, and define improvement requirements.
-2. **Phase 2: Design** – Plan how to improve the code structure, renaming variables, optimizing logic, and making it more efficient.
-3. **Phase 3: Implementation** – Refactor the code following your design plan, ensuring better readability and efficiency.
-4. **Phase 4: Testing** – Test the refactored code with multiple inputs to ensure correctness and improvements.
-5. **Phase 5: Documentation & Maintenance** – Write clear comments, and submit your final version, ensuring the code is easy to maintain.
+El programa AgeValidation solicita al usuario que ingrese su edad y verifica si cumple con un límite de edad para conceder o denegar el acceso. El límite de edad es 18 años.
+
+### *Componentes del Código*
+
+1. *Importación de Librerías*
+
+    java
+    import java.util.Scanner;
+    
+
+    - Importa la clase Scanner para la entrada de datos desde la consola.
+
+2. *Método Principal*
+
+    java
+    public static void main(String[] args) {
+    
+
+    - Método principal que inicia la ejecución del programa.
+
+3. *Creación y Uso del Objeto Scanner*
+
+    java
+    Scanner escaner = new Scanner(System.in); // Creación del objeto Scanner
+    System.out.print("Ingrese su edad: ");
+    int edadUsuario = escaner.nextInt();
+    
+
+    - Crea un objeto Scanner para leer la edad del usuario desde la consola.
+
+4. Definición de la Constante y Validación
+
+    java
+    final int AGE_LIMIT = 18;
+    if (edadUsuario >= AGE_LIMIT) {
+        System.out.println("Access granted");
+    } else {
+        System.out.println("Access denied");
+    }
+    
+
+    - Define AGE_LIMIT como 18. Verifica si la edad del usuario es suficiente para conceder el acceso.
+
+### Ejemplo de Ejecución
+
+- Entrada: 20 → Salida: Access granted
+- Entrada: 16 → Salida: Access denied
 
 ---
 
-## Instructions
+TaxCalculation
 
-1. **Repository Forking**:
-   - Fork the repository to create a copy in your GitHub account.
-   - Clone the repository to your local machine.
+Aquí tienes una documentación concisa para el código Java TaxCalculation, destacando los aspectos más importantes.
 
-2. **Analyze the Code**:
-   - Carefully read the provided code.
-   - Identify magic numbers, unclear variable names, or inefficient logic.
+---
 
-3. **Refactor the Code**:
-   - Improve the variable names, replace magic numbers with constants, and optimize the control structures.
-   - Make sure to add comments explaining the logic and changes you made.
-   - Apply **arrays** where repetition of variables exists.
+## *Documentación del Código: TaxCalculation*
 
-4. **Test the Refactored Code**:
-   - Run the program with different inputs to validate that the refactored code functions as expected.
-   - Ensure the program handles errors gracefully (e.g., invalid input, edge cases).
+### Descripción General
 
-5. **Submit Your Work**:
-   - Once you complete the refactorization, push your changes to your forked repository.
-   - Create a pull request (PR) to the original repository, explaining the improvements you made and how you followed the **SDLC** approach.
+El programa TaxCalculation calcula el impuesto total para una lista de precios de productos, aplicando diferentes tasas impositivas basadas en un umbral de precio. Luego, determina si el impuesto total supera un umbral predefinido para clasificar el impuesto como alto o bajo.
 
+### *Componentes del Código*
+
+1. *Definición de Constantes*
+
+    java
+    final double TAX_RATE_HIGH = 0.15;  // Tasa de impuesto alta
+    final double TAX_RATE_LOW = 0.10;   // Tasa de impuesto baja
+    final double TAX_THRESHOLD = 50;    // Umbral para aplicar la tasa impositiva
+    final double TOTAL_TAX_THRESHOLD = 50; // Umbral para el total de impuestos
+    
+
+    - *TAX_RATE_HIGH*: Tasa de impuesto aplicada a precios superiores al umbral.
+    - *TAX_RATE_LOW*: Tasa de impuesto aplicada a precios inferiores o iguales al umbral.
+    - *TAX_THRESHOLD*: Umbral de precio para decidir la tasa impositiva.
+    - *TOTAL_TAX_THRESHOLD*: Umbral para determinar si el impuesto total es alto o bajo.
+
+2. *Diseño de Datos*
+
+    java
+    double[] productPrices = {100, 200};  // Array de precios de productos
+    
+
+    - productPrices: Array que contiene los precios de los productos para los cuales se calculará el impuesto.
+
+3. Cálculo del Impuesto
+
+    java
+    double totalTax = 0;
+
+    for (double price : productPrices) {
+        double tax;
+        if (price > TAX_THRESHOLD) {
+            tax = price * TAX_RATE_HIGH;  // Tasa alta para precios mayores al umbral
+        } else {
+            tax = price * TAX_RATE_LOW;   // Tasa baja para precios menores o iguales al umbral
+        }
+        totalTax += tax;  // Acumulación del impuesto total
+    }
+    
+
+    - totalTax: Variable que acumula el impuesto calculado para todos los productos.
+    - El bucle for itera sobre cada precio y calcula el impuesto basado en la tasa correspondiente, acumulando el resultado en totalTax.
+
+4. Evaluación del Impuesto Total
+
+    java
+    if (totalTax > TOTAL_TAX_THRESHOLD) {
+        System.out.println("High total tax: " + totalTax);
+    } else {
+        System.out.println("Low total tax: " + totalTax);
+    }
+    
+
+    - Compara el totalTax con TOTAL_TAX_THRESHOLD para clasificar el impuesto total como alto o bajo e imprime el resultado.
+
+### Ejemplo de Ejecución
+
+- *Precios*: {100, 200}
+- *Tasa Alta*: 0.15
+- *Tasa Baja*: 0.10
+- *Umbral de Precio*: 50
+- *Umbral Total de Impuesto*: 50
+
+- *Impuesto Total Calculado*: 45 + 30 = 75
+- *Salida*: High total tax: 75

@@ -24,21 +24,17 @@ public class Store {
         int[] cantidadesProductos = {CANTIDAD_PRODUCTO_1,CANTIDAD_PRODUCTO_2,CANTIDAD_PRODUCTO_3};
         
         //creamos un bucle for para calcular los totales de cada venta
-        
-        for (int i = 0; i < prices.length; i++) {
-            totalSales += prices[i] * quantities[i];
+        int totalSales=0;
+        for (int i=0;i<precioProductos.length; i++){
+            int total = precioProductos[i]*cantidadesProductos[i];
+            totalSales=totalSales+total;
         }
 
-        // Evaluación del rendimiento de ventas
-        if (totalSales > SALES_THRESHOLD) {
+        //condicional a validar 
+        if (totalSales > LIMITE_DE_VENTAS) {
             System.out.println("Good sales performance");
         } else {
             System.out.println("Low sales performance");
-        
-        
-      
-
-        
         }
     }
 }
